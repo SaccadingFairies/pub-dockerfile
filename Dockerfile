@@ -48,7 +48,11 @@ COPY ir_astra_ost.yaml /home/baxter/catkin_ws
 COPY rgb_astra_ost.yaml /home/baxter/catkin_ws
 COPY export.sh /home/baxter/catkin_ws
 RUN cat export.sh >> ~/.profile
+RUN echo 'source /opt/ros/kinetic/setup.bash' >> ~/.bashrc
+COPY entrypoint.sh /home/baxter/catkin_ws
+RUN chmod +x entrypoint.sh
 
 # it is neccesary to run 
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
-ENTRYPOINT ["/bin/bash", "-c", "roslaunch astra_launch astrapro.launch roslaunch astra_launch astrapro.launch rgb_camera_info_url:=home/baxter/catkin_ws/ir_astra_ost.yaml depth_camera_info_url:=/home/baxter/catkin_ws/rgb_astra_ost.yaml"]
+ENTRYPOINT ["/home/baxter/catkin_ws/entrypoint.sh"]
+CMD ["bash"]
