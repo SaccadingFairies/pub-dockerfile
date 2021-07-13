@@ -44,5 +44,8 @@ RUN sed -i -e '16 s/value="0.1"/value="0.0"/g' /home/baxter/catkin_ws/src/moveit
 RUN git clone -b kinetic-devel https://github.com/UbiquityRobotics/fiducials
 RUN git clone -b kinetic-devel https://github.com/ros-perception/vision_msgs
 WORKDIR /home/baxter/catkin_ws
+COPY ir_astra_ost.yaml /home/baxter/catkin_ws
+COPY rgb_astra_ost.yaml /home/baxter/catkin_ws
+
 # it is neccesary to run 
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
