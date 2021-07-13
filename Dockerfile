@@ -54,5 +54,4 @@ RUN chmod +x entrypoint.sh
 
 # it is neccesary to run 
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
-ENTRYPOINT ["/home/baxter/catkin_ws/entrypoint.sh"]
-CMD ["bash"]
+#ENTRYPOINT /home/baxter/catkin_ws/entrypoint.sh
