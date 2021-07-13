@@ -46,6 +46,8 @@ RUN git clone -b kinetic-devel https://github.com/ros-perception/vision_msgs
 WORKDIR /home/baxter/catkin_ws
 COPY ir_astra_ost.yaml /home/baxter/catkin_ws
 COPY rgb_astra_ost.yaml /home/baxter/catkin_ws
+COPY export.sh /home/baxter/catkin_ws
+RUN cat export.sh >> ~/.profile
 
 # it is neccesary to run 
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
