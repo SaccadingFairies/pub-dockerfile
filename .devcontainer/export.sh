@@ -1,0 +1,10 @@
+export ROS_ROOT=/opt/ros/kinetic/share/ros
+export ROS_PACKAGE_PATH=/home/baxter/hardware_ws/src:/opt/ros/kinetic/share
+export ROS_MASTER_URI=http://011502P0001.local:11311
+export ROS_PYTHON_VERSION=2
+export ROS_VERSION=1
+export ROSLISP_PACKAGE_DIRECTORIES=/home/baxter/hardware_ws/devel/share/common-lisp
+export __ROS_PROMPT=1
+export ROS_DISTRO=kinetic
+export ROS_IP=10.0.0.155
+export ROS_ETC_DIR=/opt/ros/kinetic/etc/ros
