@@ -1,0 +1,1 @@
+sudo docker run --rm -it --network=host --add-host=011502P0001.local:10.0.0.10 --name="baxterSimInstance" --volume=/tmp/.X11-unix:/tmp/.X11-unix --device=/dev/dri:/dev/dri --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/home/baxter" --privileged -v /dev/bus/usb:/dev/bus/usb -e YOUR_IP=$YOUR_IP baxter:kinetic 
