@@ -51,3 +51,4 @@ RUN cat export.sh >> ~/.profile
 
 # it is neccesary to run 
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
+ENTRYPOINT ["/bin/bash", "-c", "roslaunch astra_launch astrapro.launch roslaunch astra_launch astrapro.launch rgb_camera_info_url:=home/baxter/catkin_ws/ir_astra_ost.yaml depth_camera_info_url:=/home/baxter/catkin_ws/rgb_astra_ost.yaml"]
