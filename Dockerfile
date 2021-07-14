@@ -1,5 +1,5 @@
 FROM osrf/ros:kinetic-desktop-full
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "-l", "-c"]
 # automatically sources the default ros on docker run
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 # Package for installing Baxter
@@ -54,4 +54,5 @@ RUN chmod +x entrypoint.sh
 
 # it is neccesary to run 
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
-#ENTRYPOINT /home/baxter/catkin_ws/entrypoint.sh
+ENTRYPOINT /home/baxter/catkin_ws/entrypoint.sh
+CMD ["-f","/dev/null"]
