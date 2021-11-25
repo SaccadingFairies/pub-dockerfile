@@ -23,6 +23,10 @@ RUN pip3.6 install -U rosdep rosinstall_generator wstool rosinstall roboticstool
 #Installing baxter_sdk
 RUN mkdir -p /home/baxter/catkin_ws/src
 WORKDIR /home/baxter/catkin_ws/src
+RUN git clone -b release/0.1.19 https://github.com/vcstools/wstool/
+WORKDIR /home/baxter/catkin_ws/src/wstool
+RUN python setup.py install
+WORKDIR /home/baxter/catkin_ws/src
 #Baxter firware needs release 1.1.1
 RUN git clone -b release-1.1.1 https://github.com/AIResearchLab/baxter
 WORKDIR /home/baxter/catkin_ws/src/baxter
@@ -46,13 +50,14 @@ RUN git clone -b kinetic-devel https://github.com/ros-perception/vision_msgs
 WORKDIR /home/baxter/catkin_ws
 COPY ir_astra_ost.yaml /home/baxter/catkin_ws
 COPY rgb_astra_ost.yaml /home/baxter/catkin_ws
-COPY export.sh /home/baxter/catkin_ws
-RUN cat export.sh >> ~/.profile
+# COPY export.sh /home/baxter/catkin_ws
+# RUN cat export.sh >> ~/.profile
 RUN echo 'source /opt/ros/kinetic/setup.bash' >> ~/.bashrc
-COPY entrypoint.sh /home/baxter/catkin_ws
-RUN chmod +x entrypoint.sh
+# COPY entrypoint.sh /home/baxter/catkin_ws
+# RUN chmod +x entrypoint.sh
 
 # it is neccesary to run 
 RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
-ENTRYPOINT /home/baxter/catkin_ws/entrypoint.sh
-CMD ["-f","/dev/null"]
+# EXPOSE 11311 
+CMD source devel/setup.bash; roslaunch astra_launch astrapro.launch rgb_camera_info_url:=home/baxter/catkin_ws/ir_astra_ost.yaml depth_camera_info_url:=/home/baxter/catkin_ws/rgb_astra_ost.yaml_
+
