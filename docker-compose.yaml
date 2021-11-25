@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
 
@@ -16,7 +16,7 @@ services:
       - ROSLISP_PACKAGE_DIRECTORIES=/home/baxter/catkin_ws/devel/share/common-lisp
       - __ROS_PROMPT=1
       - ROS_DISTRO=kinetic
-      - ROS_IP=10.0.0.161
+      - ROS_IP=10.0.0.155
       - ROS_ETC_DIR=/opt/ros/kinetic/etc/ros
     privileged: true
     container_name: astra_launch 
@@ -24,5 +24,6 @@ services:
     # command: rostopic pub /test std_msgs/String hello
     extra_hosts:
       - "011502P0001.local:10.0.0.10"
+    restart: always
   
    
